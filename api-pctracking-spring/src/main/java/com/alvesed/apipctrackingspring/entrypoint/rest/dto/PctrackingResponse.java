@@ -13,6 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PctrackingResponse {
 
-    private Long idPctracking;
+    private String idPctracking;
     private LocalDateTime dateTimeRequestTracking;
 }
