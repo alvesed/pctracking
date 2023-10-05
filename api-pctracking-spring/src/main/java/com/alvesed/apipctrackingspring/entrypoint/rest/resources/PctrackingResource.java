@@ -6,6 +6,8 @@ import com.alvesed.apipctrackingspring.core.usecase.ListPctrakingUseCase;
 import com.alvesed.apipctrackingspring.entrypoint.rest.dto.PctrackingRequest;
 import com.alvesed.apipctrackingspring.entrypoint.rest.dto.PctrackingResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,11 +39,13 @@ public class PctrackingResource {
     }
 
     @PostMapping
-    public PctrackingResponse createRequest(@RequestBody PctrackingRequest request) {
+    public ResponseEntity<PctrackingResponse> createRequest(@RequestBody PctrackingRequest request) {
         System.out.println("Create request");
         var pctracking = new Pctracking(request.getIdPctracking(), request.getDateTimeRequestTracking());
         pctracking = createPctrakingUseCase.execute(pctracking);
-        return new PctrackingResponse(pctracking.getIdPctracking(), pctracking.getDateTimeRequestTracking());
+        var pctrackingResponse = new PctrackingResponse(pctracking.getIdPctracking(), pctracking.getDateTimeRequestTracking());
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(pctrackingResponse);
     }
 
 }
