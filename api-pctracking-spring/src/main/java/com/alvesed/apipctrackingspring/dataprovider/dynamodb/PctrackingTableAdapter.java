@@ -11,12 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
-import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
-import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
-import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
+import software.amazon.awssdk.services.dynamodb.model.*;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,12 +33,15 @@ public class PctrackingTableAdapter implements CreatePctrackingPort, ListPctrack
 
         return requestsPctrackingTable.stream()
                 .map(PctrackingTable::toPctracking)
+                .sorted(Pctracking::compareTo)
                 .toList();
 
     }
 
     @Override
     public Pctracking createPctrackingPort(Pctracking pctracking) {
+
+        pctracking.setIdPctracking(nextValueSequence());
 
         HashMap<String, AttributeValue> itemValues = new HashMap<>();
         itemValues.put("id_pctracking", AttributeValue.builder().s(pctracking.getIdPctracking()).build());
@@ -69,4 +68,20 @@ public class PctrackingTableAdapter implements CreatePctrackingPort, ListPctrack
 
         return pctracking;
     }
+
+    private String nextValueSequence() {
+
+        var listPctrackingPort = listPctrackingPort();
+
+        var nextValue = 1;
+        if (listPctrackingPort != null && listPctrackingPort.size() > 0) {
+            var lastPctracking = listPctrackingPort.stream().max(Pctracking::compareTo);
+
+            if (lastPctracking != null) {
+                nextValue = Integer.valueOf(lastPctracking.get().getIdPctracking()) + 1;
+            }
+        }
+        return String.valueOf(nextValue);
+    }
+
 }

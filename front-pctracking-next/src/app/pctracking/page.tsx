@@ -16,13 +16,14 @@ export default async function Pctracking() {
                 Pctracking - requests
             </h2>
         </article>
+        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <table className="table-auto border-b font-medium dark:border-neutral-500">
-            <tr>
+            <tr className=" border-black bg-gray-400 border-2">
                 <th>id</th>
                 <th>date time</th>
             </tr>
             {pctrackingRequests.map((pctracking) => (
-                <tr className=" border-gray-700 bg-gray-600" key={pctracking.idPctracking}>
+                <tr className=" border-black border-spacing-4 border-2 bg-gray-600" key={pctracking.idPctracking}>
                     <td className="whitespace-nowrap font-medium text-white">
                         {pctracking.idPctracking}
                     </td>
@@ -32,6 +33,7 @@ export default async function Pctracking() {
                 </tr>
             ))}
         </table>
+        </div>
     </main>
   )
 }
