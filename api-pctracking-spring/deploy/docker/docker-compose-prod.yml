@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+
+  pctracking:
+    container_name: pctracking
+    image: alvesed/api-pctracking-spring:latest
+    environment:
+      SERVER_PORT: 3000
+      SPRING_PROFILES_ACTIVE: prod
+      TZ: "America/Sao_Paulo"
+    ports:
+      - "80:3000"
+    depends_on:
+      - dynamodb-local
+    networks:
+      - docker-network
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+        reservations:
+          memory: 700M
+    restart: always
+
+networks:
+  docker-network:
+    driver: bridge
