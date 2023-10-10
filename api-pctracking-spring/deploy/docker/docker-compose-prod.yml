@@ -13,7 +13,7 @@ services:
 
   pctracking:
     container_name: pctracking
-    image: alvesed/api-pctracking-spring:latest
+    image: alvesed/api-pctracking-spring:0.0.2-SNAPSHOT
     environment:
       SERVER_PORT: 3000
       SPRING_PROFILES_ACTIVE: prod

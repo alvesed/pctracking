@@ -38,7 +38,7 @@ public class ApiPctrackingSpringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiPctrackingSpringApplication.class, args);
-
+		System.out.println("0.0.2-SNAPSHOT 10/10");
 		//deleteTable();
 
 		if (!isPctrackingTableCreated()) {
