@@ -25,6 +25,6 @@ public class Pctracking implements Comparable<Pctracking> {
 
     @Override
     public int compareTo(Pctracking o) {
-        return this.getIdPctracking().compareTo(o.getIdPctracking());
+        return Integer.valueOf(this.getIdPctracking()).compareTo(Integer.valueOf(o.getIdPctracking()));
     }
 }
