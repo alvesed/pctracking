@@ -41,7 +41,7 @@ export default async function Pctracking() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By Alvesed - show me the code
+            By alvesed - show me the code
           </a>
         </div>
 
