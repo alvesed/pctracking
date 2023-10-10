@@ -1,7 +1,7 @@
 import { Pctracking } from "../models";
 
 async function getPctrackingRequests(): Promise<Pctracking[]> {
-    const response = await fetch(`http://ec2-18-232-166-188.compute-1.amazonaws.com/pctracking`);
+    const response = await fetch(`http://ec2-52-1-121-229.compute-1.amazonaws.com/pctracking`);
     return response.json();
 }
 
@@ -34,6 +34,17 @@ export default async function Pctracking() {
             ))}
         </table>
         </div>
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+          <a
+            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+            href="https://github.com/alvesed/pctracking"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            By Alvesed - show me code
+          </a>
+        </div>
+
     </main>
   )
 }
