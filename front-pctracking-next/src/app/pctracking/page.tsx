@@ -10,7 +10,7 @@ export default async function Pctracking() {
   const pctrackingRequests = await getPctrackingRequests();
   
   return (
-    <main className="container mx-auto px-2">
+    <main className="container mx-auto px-2" suppressHydrationWarning>
         <article className="format format-invert">
             <h2 className={`mb-3 text-2xl font-semibold`}>
                 Pctracking - requests
@@ -23,7 +23,7 @@ export default async function Pctracking() {
                 <th>date time</th>
             </tr>
             {pctrackingRequests.map((pctracking) => (
-                <tr className=" border-black border-spacing-4 border-2 bg-gray-600" key={pctracking.idPctracking}>
+                <tr className=" border-black border-spacing-4 border-2 bg-gray-600" key={pctracking.idPctracking} suppressHydrationWarning>
                     <td className="whitespace-nowrap font-medium text-white">
                         {pctracking.idPctracking}
                     </td>
@@ -39,7 +39,6 @@ export default async function Pctracking() {
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://github.com/alvesed/pctracking"
             target="_blank"
-            rel="noopener noreferrer"
           >
             By alvesed - show me the code
           </a>
