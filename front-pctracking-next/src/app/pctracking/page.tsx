@@ -17,22 +17,16 @@ export default async function Pctracking() {
             </h2>
         </article>
         <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <table className="table-auto border-b font-medium dark:border-neutral-500">
-            <tr className=" border-black bg-gray-400 border-2">
-                <th>id</th>
-                <th>date time</th>
-            </tr>
             {pctrackingRequests.map((pctracking) => (
-                <tr className=" border-black border-spacing-4 border-2 bg-gray-600" key={pctracking.idPctracking} suppressHydrationWarning>
-                    <td className="whitespace-nowrap font-medium text-white">
+                <div className=" border-black border-spacing-4 border-2 bg-gray-600" key={pctracking.idPctracking} suppressHydrationWarning>
+                    <div className="whitespace-nowrap font-medium text-white">
                         {pctracking.idPctracking}
-                    </td>
-                    <td className="whitespace-nowrap font-medium text-white">
+                    </div>
+                    <div className="whitespace-nowrap font-medium text-white">
                         {pctracking.dateTimeRequestTracking}
-                    </td>
-                </tr>
+                    </div>
+                </div>
             ))}
-        </table>
         </div>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
