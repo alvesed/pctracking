@@ -1,7 +1,8 @@
 import { Pctracking } from "../models";
 
 async function getPctrackingRequests(): Promise<Pctracking[]> {
-    const response = await fetch(`http://ec2-52-1-121-229.compute-1.amazonaws.com/pctracking`);
+    const response = await fetch(`http://ec2-52-1-121-229.compute-1.amazonaws.com/pctracking`, { cache: 'no-store' });
+    console.log("getPctrackingRequests()");
     return await response.json();
 }
 
